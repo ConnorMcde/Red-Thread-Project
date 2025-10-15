@@ -1,0 +1,81 @@
+import datetime
+import calendar
+import colorama
+from colorama import Fore, Style
+import pygame
+pygame.init()
+colorama.init(autoreset=True)
+
+today= datetime.date.today()
+
+
+stack = []
+Work_names = ""
+Date = 0
+i = 0
+Urgent = 1
+close = 7
+
+patchingsound = pygame.mixer.Sound(r"c:\Users\Connor\Downloads\2025-10-14 23-06-12.mp3")
+
+
+print("\n ----------Work reminder App---------- ")
+
+
+while True:
+    
+    print("A to add reminder, V to view reminders, D to delete reminder, E to edit,  Q to Quit")
+    input1 = input("").upper()
+   
+
+    if input1 == "A":
+        Work_names = input("Name: ")
+        year = int(input("Year due (e.g. 2025): "))
+        month = int(input("Month due (1–12): "))
+        day = int(input("Day due (1–31): "))
+        due_date = datetime.date(year, month, day)
+        days_left = (due_date - today).days
+        stack.append((Work_names, due_date, days_left))
+        print(f"\n{Work_names} added")
+        
+
+    elif input1 == "V":
+        if not stack:
+            print("no work reminders have been written")
+        else:
+            print("\nYour reminders:")
+            for i, (Work_names, due_date, days_left) in enumerate((stack), 1): 
+                if days_left <= Urgent:
+                    print(f"{i}. {Work_names} = {Fore.RED}{days_left} days left!{Style.RESET_ALL}")
+                if 0 > days_left:
+                    print(f"{Fore.RED}U have passed your due date!{Style.RESET_ALL}")
+                    removed = stack.pop()
+                    print(f"\nRemoved reminder: {removed[0]}")
+                    
+                elif 1 < days_left <= close:
+                    print(f"{i}. {Work_names} = {Fore.YELLOW}{days_left} days left!{Style.RESET_ALL}")
+                else:
+                    print(f"{i}. {Work_names} = {Fore.GREEN}{days_left} days left{Style.RESET_ALL}")
+                    
+    
+    elif input1 == "E": 
+        print("\nDo u want to change Urgent, close or Far times. U/C/F")
+        SettingChange = input("").upper()
+        if SettingChange == "U":
+            Urgent = int(input("Urgent = "))
+            print("\nUrgent times have changed")
+        elif SettingChange == "C":
+            close = int(input("Close = "))
+            print("\nClose times have changed")
+        else:
+            print("\nFar times will always be after close or urgent if u chose F")
+                    
+    elif input1 == "D":  
+        if stack:
+            removed = stack.pop()
+            print(f"\nRemoved reminder: {removed[0]}")
+        else:
+            print(f"\n There are no reminders to remove")
+
+    elif input1 == "Q":
+        break    
