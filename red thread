@@ -16,8 +16,6 @@ i = 0
 Urgent = 1
 close = 7
 
-patchingsound = pygame.mixer.Sound(r"c:\Users\Connor\Downloads\2025-10-14 23-06-12.mp3")
-
 
 print("\n ----------Work reminder App---------- ")
 
@@ -72,10 +70,12 @@ while True:
                     
     elif input1 == "D":  
         if stack:
-            removed = stack.pop()
+            number = int(input("\nWhat number to remove: "))
+            
+            removed = stack.pop(number - 1)
             print(f"\nRemoved reminder: {removed[0]}")
         else:
             print(f"\n There are no reminders to remove")
 
     elif input1 == "Q":
-        break    
+        break
