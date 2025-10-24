@@ -39,7 +39,7 @@ while True:
 
     elif input1 == "V":
         if not stack:
-            print("no work reminders have been written")
+            print("\nno work reminders have been written")
         else:
             print("\nYour reminders:")
             for i, (Work_names, due_date, days_left) in enumerate((stack), 1): 
