@@ -50,9 +50,9 @@ while True:
                     removed = stack.pop()
                     print(f"\nRemoved reminder: {removed[0]}")
                     
-                elif 1 < days_left <= close:
+                elif (1 < days_left <= close) & (days_left > Urgent):
                     print(f"{i}. {Work_names} = {Fore.YELLOW}{days_left} days left!{Style.RESET_ALL}")
-                else:
+                elif (days_left > Urgent) & (days_left > close):
                     print(f"{i}. {Work_names} = {Fore.GREEN}{days_left} days left{Style.RESET_ALL}")
                     
     
@@ -90,7 +90,7 @@ while True:
             removed = stack.pop(number - 1)
             print(f"\nRemoved reminder: {removed[0]}")
         else:
-            print(f"\n There are no reminders to remove")
+            print(f"\nThere are no reminders to remove")
 
     elif input1 == "Q":
         break
