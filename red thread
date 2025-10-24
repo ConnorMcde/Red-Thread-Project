@@ -57,11 +57,26 @@ while True:
                     
     
     elif input1 == "E": 
-        print("\nDo u want to change Urgent, close or Far times. U/C/F")
+        print("\nDo u want to change Urgent, Close or Far times OR do u want to Edit work dates. U/C/F/E")
         SettingChange = input("").upper()
         if SettingChange == "U":
             Urgent = int(input("Urgent = "))
             print("\nUrgent times have changed")
+        elif SettingChange == "E":
+            print("")
+            for i, (Work_names, due_date, days_left) in enumerate((stack), 1): 
+             print(f"{i}. {Work_names}")
+            choice =  int(input("Which would u like to edit: "))
+            Work_names = stack[choice - 1][0]
+            stack.pop(choice - 1)
+            year = int(input("Year due (e.g. 2025): "))
+            month = int(input("Month due (1–12): "))
+            day = int(input("Day due (1–31): "))
+            due_date = datetime.date(year, month, day)
+            days_left = (due_date - today).days
+            stack.append((Work_names, due_date, days_left))
+            print(f"\n{Work_names} changed")
+             
         elif SettingChange == "C":
             close = int(input("Close = "))
             print("\nClose times have changed")
