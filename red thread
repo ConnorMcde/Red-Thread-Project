@@ -17,7 +17,7 @@ Urgent = 1
 close = 7
 
 
-print("\n ----------Work reminder App---------- ")
+print(f"\n{Fore.BLUE} ----------Work reminder App----------{Style.RESET_ALL} ")
 
 
 while True:
